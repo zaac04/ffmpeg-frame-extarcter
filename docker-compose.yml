@@ -1,0 +1,20 @@
+services:
+  nishcal:
+    restart: always
+    build: 
+      context: .
+      dockerfile: ./deploy/Dockerfile
+    env_file: .env
+
+    volumes:
+      - shared_folder:/app/shared_folder
+    # entrypoint: ["sleep","1d"]
+
+networks:
+  default:
+      name: stargazer_network
+      external: true
+
+volumes:
+  shared_folder:
+    external: true
